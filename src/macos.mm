@@ -1,11 +1,11 @@
-#include <Geode/Loader.hpp>
-#include <Geode/Utils.hpp>
+#include <Sapphire/Loader.hpp>
+#include <Sapphire/Utils.hpp>
 
-#if defined(GEODE_IS_MACOS)
+#if defined(SAPPHIRE_IS_MACOS)
 #import <Cocoa/Cocoa.h>
 #include <objc/runtime.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 static IMP s_originalSendEventIMP;
 

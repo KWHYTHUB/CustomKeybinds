@@ -1,12 +1,12 @@
-#include <Geode/modify/EditorUI.hpp>
+#include <Sapphire/modify/EditorUI.hpp>
 #include "../include/Keybinds.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 using namespace keybinds;
 
 // TODO: move this to header in 1.2.0
 
-#if defined(GEODE_IS_MACOS)
+#if defined(SAPPHIRE_IS_MACOS)
     static constexpr auto PLATFORM_CONTROL = Modifier::Command;
 #else
     static constexpr auto PLATFORM_CONTROL = Modifier::Control;
@@ -19,7 +19,7 @@ struct $modify(EditorUI) {
     }
 
     static inline int platformButton() {
-        #ifdef GEODE_IS_MACOS
+        #ifdef SAPPHIRE_IS_MACOS
             return 1;
         #else
             return 0;

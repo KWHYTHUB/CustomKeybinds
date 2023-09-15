@@ -1,11 +1,11 @@
-#include <Geode/modify/CCKeyboardDispatcher.hpp>
-#include <Geode/modify/MoreOptionsLayer.hpp>
-#include <Geode/binding/AppDelegate.hpp>
-#include <Geode/ui/Notification.hpp>
+#include <Sapphire/modify/CCKeyboardDispatcher.hpp>
+#include <Sapphire/modify/MoreOptionsLayer.hpp>
+#include <Sapphire/binding/AppDelegate.hpp>
+#include <Sapphire/ui/Notification.hpp>
 #include "../include/Keybinds.hpp"
 #include "KeybindsLayer.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 using namespace keybinds;
 
 class $modify(CCKeyboardDispatcher) {

@@ -10,7 +10,7 @@ You can use Custom Keybinds as a dependency by declaring it in your `mod.json`:
 {
     "dependencies": [
         {
-            "id": "geode.custom-keybinds",
+            "id": "sapphire.custom-keybinds",
             "version": "v1.1.0",
             "required": true
         }

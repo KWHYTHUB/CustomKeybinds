@@ -1,10 +1,10 @@
 #include "KeybindsLayer.hpp"
 #define FTS_FUZZY_MATCH_IMPLEMENTATION
-#include <Geode/external/fts/fts_fuzzy_match.h>
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/binding/CCMenuItemToggler.hpp>
-#include <Geode/ui/General.hpp>
-#include <Geode/ui/Scrollbar.hpp>
+#include <Sapphire/external/fts/fts_fuzzy_match.h>
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/binding/CCMenuItemToggler.hpp>
+#include <Sapphire/ui/General.hpp>
+#include <Sapphire/ui/Scrollbar.hpp>
 
 static ButtonSprite* createBindBtn(CCSprite* top) {
     auto spr = ButtonSprite::create(top, 18, true, 0, "square.png"_spr, 2.f);
@@ -562,7 +562,7 @@ bool KeybindsLayer::setup() {
     m_searchInput = InputNode::create(scrollSize.width / .8f, "Search Bindings...");
     m_searchInput->setPosition(winSize.width / 2, winSize.height / 2 + scrollSize.height / 2);
     m_searchInput->getInput()->getPlaceholderLabel()->setAnchorPoint({ .0f, .5f });
-    m_searchInput->getInput()->updateLabel(""); // trigger position fix from Geode
+    m_searchInput->getInput()->updateLabel(""); // trigger position fix from Sapphire
     m_searchInput->getInput()->setPositionX(
         m_searchInput->getInput()->getPositionX() - scrollSize.width / 2 / .8f + 10.f
     );

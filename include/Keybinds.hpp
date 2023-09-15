@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Geode/DefaultInclude.hpp>
-#include <Geode/utils/MiniFunction.hpp>
-#include <Geode/utils/cocos.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/loader/Event.hpp>
+#include <Sapphire/DefaultInclude.hpp>
+#include <Sapphire/utils/MiniFunction.hpp>
+#include <Sapphire/utils/cocos.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/loader/Event.hpp>
 #include <cocos2d.h>
 
-#ifdef GEODE_IS_WINDOWS
+#ifdef SAPPHIRE_IS_WINDOWS
     #ifdef HJFOD_CUSTOM_KEYBINDS_EXPORTING
         #define CUSTOM_KEYBINDS_DLL __declspec(dllexport)
     #else
@@ -107,7 +107,7 @@ namespace keybinds {
     };
 
     struct CUSTOM_KEYBINDS_DLL BindHash {
-        geode::Ref<Bind> bind;
+        sapphire::Ref<Bind> bind;
         BindHash(Bind* bind);
         bool operator==(BindHash const& other) const;
     };
@@ -152,8 +152,8 @@ namespace keybinds {
         ActionID m_id;
         std::string m_name;
         std::string m_description;
-        geode::Mod* m_owner;
-        std::vector<geode::Ref<Bind>> m_defaults;
+        sapphire::Mod* m_owner;
+        std::vector<sapphire::Ref<Bind>> m_defaults;
         Category m_category;
         bool m_repeatable;
     
@@ -161,8 +161,8 @@ namespace keybinds {
         ActionID getID() const;
         std::string getName() const;
         std::string getDescription() const;
-        geode::Mod* getMod() const;
-        std::vector<geode::Ref<Bind>> getDefaults() const;
+        sapphire::Mod* getMod() const;
+        std::vector<sapphire::Ref<Bind>> getDefaults() const;
         Category getCategory() const;
         bool isRepeatable() const;
 
@@ -171,14 +171,14 @@ namespace keybinds {
             ActionID const& id,
             std::string const& name,
             std::string const& description = "",
-            std::vector<geode::Ref<Bind>> const& defaults = {},
+            std::vector<sapphire::Ref<Bind>> const& defaults = {},
             Category const& category = Category(),
             bool repeatable = true, 
-            geode::Mod* owner = geode::Mod::get()
+            sapphire::Mod* owner = sapphire::Mod::get()
         );
     };
 
-    class CUSTOM_KEYBINDS_DLL InvokeBindEvent : public geode::Event {
+    class CUSTOM_KEYBINDS_DLL InvokeBindEvent : public sapphire::Event {
     protected:
         ActionID m_id;
         bool m_down;
@@ -192,19 +192,19 @@ namespace keybinds {
         bool isDown() const;
     };
 
-    class CUSTOM_KEYBINDS_DLL InvokeBindFilter : public geode::EventFilter<InvokeBindEvent> {
+    class CUSTOM_KEYBINDS_DLL InvokeBindFilter : public sapphire::EventFilter<InvokeBindEvent> {
     protected:
         cocos2d::CCNode* m_target;
         ActionID m_id;
 
     public:
-        using Callback = geode::ListenerResult(InvokeBindEvent*);
+        using Callback = sapphire::ListenerResult(InvokeBindEvent*);
         
-        geode::ListenerResult handle(geode::utils::MiniFunction<Callback> fn, InvokeBindEvent* event);
+        sapphire::ListenerResult handle(sapphire::utils::MiniFunction<Callback> fn, InvokeBindEvent* event);
         InvokeBindFilter(cocos2d::CCNode* target, ActionID const& id);
     };
 
-    class CUSTOM_KEYBINDS_DLL PressBindEvent : public geode::Event {
+    class CUSTOM_KEYBINDS_DLL PressBindEvent : public sapphire::Event {
     protected:
         Bind* m_bind;
         bool m_down;
@@ -215,15 +215,15 @@ namespace keybinds {
         bool isDown() const;
     };
 
-    class CUSTOM_KEYBINDS_DLL PressBindFilter : public geode::EventFilter<PressBindEvent> {
+    class CUSTOM_KEYBINDS_DLL PressBindFilter : public sapphire::EventFilter<PressBindEvent> {
     public:
-        using Callback = geode::ListenerResult(PressBindEvent*);
+        using Callback = sapphire::ListenerResult(PressBindEvent*);
         
-        geode::ListenerResult handle(geode::utils::MiniFunction<Callback> fn, PressBindEvent* event);
+        sapphire::ListenerResult handle(sapphire::utils::MiniFunction<Callback> fn, PressBindEvent* event);
         PressBindFilter();
     };
 
-    class CUSTOM_KEYBINDS_DLL DeviceEvent : public geode::Event {
+    class CUSTOM_KEYBINDS_DLL DeviceEvent : public sapphire::Event {
     protected:
         DeviceID m_id;
         bool m_attached;
@@ -235,14 +235,14 @@ namespace keybinds {
         bool wasDetached() const;
     };
 
-    class CUSTOM_KEYBINDS_DLL DeviceFilter : public geode::EventFilter<DeviceEvent> {
+    class CUSTOM_KEYBINDS_DLL DeviceFilter : public sapphire::EventFilter<DeviceEvent> {
     protected:
         std::optional<DeviceID> m_id;
 
     public:
         using Callback = void(DeviceEvent*);
 
-        geode::ListenerResult handle(geode::utils::MiniFunction<Callback> fn, DeviceEvent* event);
+        sapphire::ListenerResult handle(sapphire::utils::MiniFunction<Callback> fn, DeviceEvent* event);
         DeviceFilter(std::optional<DeviceID> id = std::nullopt);
     };
 
@@ -270,13 +270,13 @@ namespace keybinds {
         std::unordered_map<DeviceID, BindParser> m_devices;
         std::vector<std::pair<ActionID, ActionData>> m_actions;
         std::vector<Category> m_categories;
-        geode::EventListener<PressBindFilter> m_listener =
-            geode::EventListener<PressBindFilter>(this, &BindManager::onDispatch);
+        sapphire::EventListener<PressBindFilter> m_listener =
+            sapphire::EventListener<PressBindFilter>(this, &BindManager::onDispatch);
         std::vector<std::pair<ActionID, float>> m_repeating;
 
         BindManager();
 
-        geode::ListenerResult onDispatch(PressBindEvent* event);
+        sapphire::ListenerResult onDispatch(PressBindEvent* event);
         void onRepeat(float dt);
         void repeat(ActionID const& action);
         void unrepeat(ActionID const& action);
@@ -323,7 +323,7 @@ namespace keybinds {
         void removeAllBindsFrom(ActionID const& action);
         void resetBindsToDefault(ActionID const& action);
         bool hasDefaultBinds(ActionID const& action) const;
-        std::vector<geode::Ref<Bind>> getBindsFor(ActionID const& action) const;
+        std::vector<sapphire::Ref<Bind>> getBindsFor(ActionID const& action) const;
 
         std::optional<RepeatOptions> getRepeatOptionsFor(ActionID const& action);
         void setRepeatOptionsFor(ActionID const& action, RepeatOptions const& options);

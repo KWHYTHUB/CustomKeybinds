@@ -1,10 +1,10 @@
-#include <Geode/modify/UILayer.hpp>
-#include <Geode/modify/PauseLayer.hpp>
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
-#include <Geode/binding/PlayLayer.hpp>
+#include <Sapphire/modify/UILayer.hpp>
+#include <Sapphire/modify/PauseLayer.hpp>
+#include <Sapphire/binding/CCMenuItemSpriteExtra.hpp>
+#include <Sapphire/binding/PlayLayer.hpp>
 #include "../include/Keybinds.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 using namespace keybinds;
 
 static void addBindSprites(CCNode* target, const char* action) {
@@ -51,7 +51,7 @@ struct $modify(UILayer) {
     }
 
     static inline int platformButton() {
-        #ifdef GEODE_IS_MACOS
+        #ifdef SAPPHIRE_IS_MACOS
             return 1;
         #else
             return 0;
